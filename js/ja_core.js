@@ -365,16 +365,16 @@ $exists = function(val) { return exists(val) && (!$.is$(val) || val.length > 0) 
         {
             var toRet = [];
             $.each(this,
-                    function(idx, obj)
-                    {
-                        if ($.is$(obj))
-                            toRet = toRet.concat(obj.objects());
-                        else if (jQuery.isArray(obj))
-                            toRet = toRet.concat($(obj).objects());
-                        else if ($.isObject(obj))
-                            toRet.push(obj);
-                    }
-                );
+                function(idx, obj)
+                {
+                    if ($.is$(obj))
+                        toRet = toRet.concat(obj.objects());
+                    else if (jQuery.isArray(obj))
+                        toRet = toRet.concat($(obj).objects());
+                    else if ($.isObject(obj))
+                        toRet.push(obj);
+                }
+            );
             return toRet;
         },
         /**

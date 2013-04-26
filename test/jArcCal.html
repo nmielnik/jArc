@@ -1,0 +1,205 @@
+﻿<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <title></title>
+</head>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.8.19/themes/base/jquery-ui.css" type="text/css" media="all" />
+<script type="text/javascript" src="../jQuery/jquery-1.7.2.js"></script>
+<script type="text/javascript" src="ja_core.js" ></script>
+<script type="text/javascript" src="ja_events.js"></script>
+<script type="text/javascript" src="ja_ui.js"></script>
+<script type="text/javascript" src="ja_datetime.js"></script>
+<script type="text/javascript" src="../jQuery/ui/jquery.ui.core.js"></script>
+<script type="text/javascript" src="../jQuery/ui/jquery.ui.widget.js"></script>
+<script type="text/javascript" src="../jQuery/ui/jquery.ui.mouse.js"></script>
+<script type="text/javascript" src="../jQuery/ui/jquery.ui.draggable.js"></script>
+<script type="text/javascript" src="../jQuery/ui/jquery.ui.droppable.js"></script>
+<script type="text/javascript" src="jCal/jcal_core.js"></script>
+<script type="text/javascript" src="jCal/jcal_cal.js"></script>
+<script type="text/javascript" src="jCal/jcal_header.js"></script>
+<script type="text/javascript" src="jCal/jcal_month.js"></script>
+<script type="text/javascript" src="jCal/jcal_event.js"></script>
+<script type="text/javascript">
+    function evt_page_onload(oEvt)
+    {
+        var date = new Date();
+        var evts =
+        [
+            new $.jaCalEvent(
+            { title: 'Event Number 1',
+                start: new Date(date.getFullYear(), date.getMonth(), date.getDate() + 4, 12, 30),
+                end: new Date(date.getFullYear(), date.getMonth(), date.getDate() + 6, 12, 30)
+            }),
+            new $.jaCalEvent(
+            { title: 'Event Number 2',
+                start: new Date(date.getFullYear(), date.getMonth(), date.getDate() + 5, 13, 30),
+                end: new Date(date.getFullYear(), date.getMonth(), date.getDate() + 5, 16, 30)
+            })
+        ];
+        var $cal = $(new $.jaCalendar({ date: new Date(), selectable: true, height: 700 }, evts)).appendTo($('body'));
+        // var oCal = $cal.un$();
+        // oCal.refresh();
+    }
+    $(document).ready(evt_page_onload);
+</script>
+<style type="text/css">
+    body
+    {
+        color: #000;
+        font-family: Segoe UI, Tahoma;
+        font-size: 85%;
+    }
+    .ui-state-hover
+    {
+        z-index: 2;
+    }
+    .ui-state-active
+    {
+        z-index: 4;
+    }
+    /* Calendar Header */
+    table.header td
+    {
+        white-space: nowrap;
+    }
+    span.header-space
+    {
+        margin-left: 10px;
+    }
+    table.header span.button-content
+    {
+        position: relative;
+	    float: left;
+	    height: 1.9em;
+	    line-height: 1.9em;
+	    padding: 0 .6em;
+	    white-space: nowrap;
+    }
+    table.header span.button-content span.ui-icon
+    {
+        position: relative;
+	    float: left;
+	    margin-top: -50%;
+	    *margin-top: 0;
+	    *top: -50%;
+    }
+    /* Calendar Body */
+    div.cal-body
+    {
+        border:1px solid rgb(5,118,198);
+        background-color: #f5f5f5;
+        -webkit-border-radius:6px;
+        -moz-border-radius:6px;
+        border-radius:6px;
+    }
+    /* Header/Footer */
+    table.cal-head,
+    table.cal-foot
+    {
+        border-spacing: 6px 0px;
+    }
+    table.cal-head tbody,
+    table.cal-foot tbody
+    {
+        display: table-row-group;
+        vertical-align: middle;
+    }
+    table.cal-head th,
+    table.cal-foot th
+    {
+        color:#fff;
+        text-align: left;
+        padding: 0 0 0 10px;
+        font-weight: normal;
+        background-color: #0576C6;
+        border: 1px solid #045889;   
+    }
+    table.cal-head th
+    {
+        -webkit-border-top-left-radius: 6px;
+	    -webkit-border-top-right-radius: 6px;
+	    -moz-border-top-left-radius: 6px;
+	    -moz-border-top-right-radius: 6px;
+        border-top-left-radius: 6px;
+	    border-top-right-radius: 6px;
+        border-bottom-width: 0px;
+    }
+    table.cal-foot th
+    {
+        -webkit-border-bottom-left-radius: 6px;
+	    -webkit-border-bottom-right-radius: 6px;
+	    -moz-border-bottom-left-radius: 6px;
+	    -moz-border-bottom-right-radius: 6px;
+        border-bottom-left-radius: 6px;
+	    border-bottom-right-radius: 6px;
+        border-top-width: 0px;
+    }
+    /* Day Holder Cells */
+    table.days
+    {
+        border-spacing: 6px;
+    }
+    table.days td
+    {
+        -webkit-border-radius: 6px;
+        -moz-border-radius: 6px;
+        border-radius: 6px;
+        border-style: solid;
+        border-width: 1px;
+    }
+    table.days td.in-month
+    {
+        background-color: #fff;
+        border-color: #ddd;
+    }
+    table.days td.out-month
+    {
+        background-color:#ddd;
+        border-color: #bbb;
+    }
+    /* Event Holder Row Tables */
+    table.month-appt
+    {
+        margin: 6px 2px;
+        border-spacing: 6px 0px;
+    }
+    table.month-appt td.day-head
+    {
+        color: #222;
+        padding: 4px 9px 0;
+        line-height: 16px;
+        overflow: hidden;
+    }
+    /* Event Segments */
+    td.seg
+    {
+        vertical-align: top;
+    }
+    div.seg
+    {
+        padding: 1px 6px 0px 2px;
+        cursor: pointer;
+        position: relative;
+    }
+    div.segHolder
+    {
+        white-space: nowrap;
+        height: 14px;
+        line-height: 1.2;
+        padding: 2px 9px;
+        cursor: pointer;
+        background-color: #0576C6;
+        border: 1px solid #000;
+        color: #fff;
+    }
+    div.segText
+    {
+        overflow: hidden;
+        font-size: 12px;
+    }
+</style>
+<body>
+
+</body>
+</html>
